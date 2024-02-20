@@ -1,5 +1,6 @@
 import requests
-#import dataparser
+import dateparser
+
 from bs4 import BeautifulSoup
 
 URL = "https://acoup.blog/"
@@ -22,7 +23,8 @@ for article in articles:
             time_tag = article.find("time", class_="entry-date published updated")
             if time_tag:
                 # Print the content of the time tag
-                print("Date:", time_tag.text.strip())
+                parsed_date = dateparser.parse(time_tag.text.strip())
+                print("Date:", parsed_date)
 
             paragraphs = newArticle.find_all("p")
             print("Title:", title.text.strip())
