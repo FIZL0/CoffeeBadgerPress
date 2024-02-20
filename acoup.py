@@ -1,4 +1,5 @@
 import requests
+#import dataparser
 from bs4 import BeautifulSoup
 
 URL = "https://acoup.blog/"
