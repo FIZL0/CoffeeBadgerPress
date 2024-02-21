@@ -1,8 +1,8 @@
 import acoup
+import datetime
 
-#given parameters
-start_date = 1/1/24
-end_date = 2/29/24
+start_date = datetime.datetime(2024, 1, 1)
+end_date = datetime.datetime(2024, 2, 29)
 
 acoup.getArticles(start_date, end_date)
 
