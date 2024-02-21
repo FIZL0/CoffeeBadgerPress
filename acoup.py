@@ -15,6 +15,7 @@ def getArticles(start_date, end_date):
             # Find the link within the title
             link = title.find("a")
             if link:
+                # Get time the article was published
                 time_tag = article.find("time", class_="entry-date published updated")
                 if time_tag is None:
                     time_tag = article.find("time", class_="entry-date published")
@@ -22,9 +23,9 @@ def getArticles(start_date, end_date):
                 if time_tag:
                     # Print the content of the time tag
                     parsed_date = dateparser.parse(time_tag.text.strip())
-                    if parsed_date < start_date:
-                        print("not in range:", parsed_date, start_date, end_date)
-                        continue
+                    if parsed_date < start_date or parsed_date > end_date: #check if the article is out of range
+                        print("Date not in range:", parsed_date, start_date, end_date)
+                        continue # skip the article
                     print("Date:", parsed_date)
                 newURL = link.get("href")
                 print("Link:", newURL)
