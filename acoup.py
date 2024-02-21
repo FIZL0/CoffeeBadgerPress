@@ -21,6 +21,9 @@ for article in articles:
             newArticle = newSoup.find("div", class_="entry-content")
             
             time_tag = article.find("time", class_="entry-date published updated")
+            if time_tag is None:
+                time_tag = article.find("time", class_="entry-date published")
+
             if time_tag:
                 # Print the content of the time tag
                 parsed_date = dateparser.parse(time_tag.text.strip())
