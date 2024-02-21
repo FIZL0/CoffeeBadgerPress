@@ -3,7 +3,7 @@ import dateparser
 
 from bs4 import BeautifulSoup
 
-def getArticles():
+def getArticles(start_date, end_date):
     URL = "https://acoup.blog/"
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, 'html.parser')
@@ -28,6 +28,7 @@ def getArticles():
                 if time_tag:
                     # Print the content of the time tag
                     parsed_date = dateparser.parse(time_tag.text.strip())
+                    #if parsed_date < start_date:
                     print("Date:", parsed_date)
 
                 paragraphs = newArticle.find_all("p")
