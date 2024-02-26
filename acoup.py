@@ -1,10 +1,15 @@
 import requests
 import dateparser
-
+import datetime
 from bs4 import BeautifulSoup
+from newspaper import Article
 
-def getArticles(start_date, end_date):
-    URL = "https://acoup.blog/"
+def getArticles(newspaper, start_date, end_date):
+    minimum_date = datetime.datetime(2019, 5 ,3)
+    if(start_date < minimum_date):
+        start_date = minimum_date
+
+    URL = f"https://acoup.blog/{start_date.year}/{start_date.month}"
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, 'html.parser')
 
@@ -35,6 +40,10 @@ def getArticles(start_date, end_date):
 
                 paragraphs = newArticle.find_all("p")
                 print("Title:", title.text.strip())
+                contents = []
                 for paragraph in paragraphs:
-                    print(paragraph.text,"\n")
-    return
+                    #print(paragraph.text,"\n")
+                    contents.append(paragraph.text)
+            new_article = Article(parsed_date, title.text.strip(), newURL, contents)
+            newspaper.add_article(new_article)
+    return newspaper
