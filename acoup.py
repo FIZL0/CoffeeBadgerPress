@@ -31,7 +31,7 @@ def getArticles(newspaper, start_date, end_date):
                         # Print the content of the time tag
                         parsed_date = dateparser.parse(time_tag.text.strip())
                         if parsed_date < start_date or parsed_date > end_date: # Check if the article is out of range
-                            print("Article is not in date range given:", parsed_date) # temp
+                            #print("Article is not in date range given:", parsed_date) # temp
                             continue # Skip the article
                         #print("Date:", parsed_date) # need to change prints to put in a csv
                     newURL = link.get("href")

@@ -16,6 +16,8 @@ for article in newspaper.articles:
     article_title = article.title
     article_author = article.author
     article_content = article.content
-    print(f"Date: {article_date}\nTitle: {article_title}\n Author: {article_author}\n-\n")
+    print(f"-\nTitle: {article_title}\n  Date: {article_date}\n    Author: {article_author}")
+print("-")
+
 
 
