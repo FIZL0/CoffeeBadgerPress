@@ -1,8 +1,9 @@
 class Article:
-    def __init__(self, date, title, link, content):
+    def __init__(self, date, title, link, author, content):
         self.date = date
         self.title = title
         self.link = link
+        self.author = author
         self.content = content
 
 class Newspaper:
@@ -18,6 +19,7 @@ class Newspaper:
             print(f"Date: {article.date}")
             print(f"Title: {article.title}")
             print(f"Link: {article.link}")
+            print(f"Author: {article.author}")
             print(f"Content: {article.content}")
             print()
     

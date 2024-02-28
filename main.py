@@ -4,8 +4,8 @@ import datetime
 
 from newspaper import Newspaper
 
-start_date = datetime.datetime(2022, 8, 1)
-end_date = datetime.datetime(2023, 2, 15)
+start_date = datetime.datetime(2023, 1, 1)
+end_date = datetime.datetime(2023, 2, 1)
 
 newspaper = Newspaper()
 newspaper = acoup.getArticles(newspaper, start_date, end_date)
@@ -14,7 +14,8 @@ for article in newspaper.articles:
     # Access the attributes of each article
     article_date = article.date
     article_title = article.title
+    article_author = article.author
     article_content = article.content
-    #print(article_date,article_title,article_content)
+    print(f"Date: {article_date}\nTitle: {article_title}\n Author: {article_author}\n-\n")
 
 
