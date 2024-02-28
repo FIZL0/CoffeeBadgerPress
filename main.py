@@ -4,12 +4,13 @@ import datetime
 
 from newspaper import Newspaper
 
-start_date = datetime.datetime(2023, 1, 1)
-end_date = datetime.datetime(2023, 2, 1)
+start_date = datetime.datetime(2023, 12, 1)
+end_date = datetime.datetime(2024, 2, 28)
 
 newspaper = Newspaper()
 newspaper = acoup.getArticles(newspaper, start_date, end_date)
 #newspaper = insideofknoxville.getArticles(start_date, end_date)
+print("\nRESULTS:\n")
 for article in newspaper.articles:
     # Access the attributes of each article
     article_date = article.date

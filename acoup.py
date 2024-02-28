@@ -10,7 +10,7 @@ def getArticles(newspaper, start_date, end_date):
     if(start_date < minimum_date):
         start_date = minimum_date
     current_date = start_date
-    while(current_date < end_date):
+    while(current_date < end_date): #+ relativedelta(months=1)
         URL = f"https://acoup.blog/{current_date.year}/{current_date.month}"
         page = requests.get(URL)
         soup = BeautifulSoup(page.content, 'html.parser')
@@ -31,9 +31,9 @@ def getArticles(newspaper, start_date, end_date):
                         # Print the content of the time tag
                         parsed_date = dateparser.parse(time_tag.text.strip())
                         if parsed_date < start_date or parsed_date > end_date: # Check if the article is out of range
-                            #print("Article is not in date range given:", parsed_date) # temp
+                            print("Article is not in date range given:", parsed_date) # temp
                             continue # Skip the article
-                        #print("Date:", parsed_date) # need to change prints to put in a csv
+                        print("Got Article, Date:", parsed_date) # need to change prints to put in a csv
                     newURL = link.get("href")
                     #print("Link:", newURL)
                     newPage = requests.get(newURL)
@@ -49,6 +49,6 @@ def getArticles(newspaper, start_date, end_date):
                         contents.append(paragraph.text)
                 new_article = Article(parsed_date, title.text.strip(), newURL, author, contents)
                 newspaper.add_article(new_article)
-                if(end_date > current_date):
-                    current_date += relativedelta(months=1)
+        if(end_date > current_date):
+            current_date += relativedelta(months=1)
     return newspaper
