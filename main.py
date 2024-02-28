@@ -106,20 +106,186 @@ html_header = """<!DOCTYPE html>
             box-sizing: border-box;
             padding: 10px 0 10px 0;
         }
-        /* Rest of your CSS styles */
-    </style>
+        
+.collumn .headline.hl3{
+    font-weight: 400;
+    font-style: italic;
+    font-size: 36px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl4{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl4:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 7px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .headline.hl4:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 10px;
+    display: block;
+    margin: 0 auto;
+
+}
+
+.collumn .headline.hl5{
+    font-weight: 400;
+    font-size: 42px;
+    text-transform: uppercase;
+    font-style: italic;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl6{
+    font-weight: 400;
+    font-size: 18px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl6:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 7px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .headline.hl6:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 10px;
+    display: block;
+    margin: 0 auto;
+
+}
+.collumn .headline.hl7{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    display: block;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl8{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl9{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl10{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .citation{
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    line-height: 44px;
+    /*font-style: italic;*/
+    text-align: center;
+    font-weight: 400;
+    display: block;
+    margin: 40px 0 40px 0;
+    font-feature-settings: "liga", "dlig";
+
+}
+.collumn .citation:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 16px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .citation:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 16px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .figure {
+	  margin: 0 0 20px;
+}
+.collumn .figcaption{
+	font-style: italic;
+	font-size: 12px;
+}
+.media {
+    -webkit-filter: sepia(80%) contrast(1) opacity(0.8);
+    filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
+    mix-blend-mode: multiply;
+    width: 100%;
+}
+/*________________________________________________________________________________________________________________________________*/
+/*MEDIAQUERIES*/
+@media only all and (max-width: 1300px) {
+    .weatherforcastbox{
+        display: none;
+    }
+
+}
+@media only all and (max-width: 1200px) {
+    .collumn{
+        width: 31%;
+    }
+
+}
+    @media only all and (max-width: 900px) {
+    .collumn{
+        width: 47%;
+    }
+
+}
+@media only all and (max-width: 600px) {
+    .collumn{
+        width: 100%;
+    }
+	.collumn + .collumn {
+				border-left: none;
+      	border-bottom: 1px solid #2f2f2f;
+	}
+    header{
+        max-width: 320px;
+        font-size: 60px;
+        line-height: 54px;
+        overflow: hidden;
+    }
+
+}
+</style>
 </head>
+"""
+html_header2 = f"""
 <body>
 <div class="head">
     <div class="headerobjectswrapper">
         <header>Coffee Badger Press</header>
     </div>
-    <div class="subhead">Knoxville, TN: start_date - end_date</div>
+    <div class="subhead">Knoxville, TN: {start_date.strftime("%m/%d/%Y")} - {end_date.strftime("%m/%d/%Y")}</div>
 </div>
 <div class="content">
-    <!-- Your content here -->"""
+"""
 
-html_end = """</div> </body> </html>"""
+html_end = "</body> </html>"
 
 newspaper = Newspaper()
 newspaper = acoup.getArticles(newspaper, start_date, end_date)
@@ -140,7 +306,7 @@ for article in newspaper.articles:
 print("-")
 
 html_art_string = ''.join(html_art)
-html_content = html_header + html_art_string + html_end
+html_content = html_header + html_header2 + html_art_string + html_end
 
 # Specify the file path where you want to save the HTML file
 file_path = "output.html"
