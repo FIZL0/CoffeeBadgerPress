@@ -42,11 +42,9 @@ def getArticles(newspaper, start_date, end_date):
                     author = soup.find('a', rel='author').text.strip()
 
                     paragraphs = newArticle.find_all("p")
-                    #print("Title:", title.text.strip())
                     contents = []
                     for paragraph in paragraphs:
-                        #print(paragraph.text,"\n")
-                        contents.append(paragraph.text)
+                        contents.append(paragraph.text + "<br>")
                 new_article = Article(parsed_date, title.text.strip(), newURL, author, contents)
                 newspaper.add_article(new_article)
         if(end_date > current_date):

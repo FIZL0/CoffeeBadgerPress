@@ -300,7 +300,7 @@ for article in newspaper.articles:
     article_content = article.content
     html_art.append(f"""<div class="collumn">
             <div class="head"><span class="headline hl3">{article_title}</span><p><span class="headline hl4">by {article_author}</span></p></div>
-            {article_content}</p></div>
+            {article_content}</div>
         """)
     print(f"-\nTitle: {article_title}\n  Date: {article_date}\n    Author: {article_author}")
 print("-")
