@@ -44,7 +44,8 @@ def getArticles(newspaper, start_date, end_date):
                     paragraphs = newArticle.find_all("p")
                     contents = []
                     for paragraph in paragraphs:
-                        contents.append(paragraph.text + "<br>")
+                        contents.append(f'<p>{paragraph.text}</p>')
+                        
                 new_article = Article(parsed_date, title.text.strip(), newURL, author, contents)
                 newspaper.add_article(new_article)
         if(end_date > current_date):
