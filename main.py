@@ -4,8 +4,8 @@ import datetime
 
 from newspaper import Newspaper
 
-start_date = datetime.datetime(2024, 1, 1)
-end_date = datetime.datetime(2024, 1, 28)
+start_date = datetime.datetime(2024, 2, 1)
+end_date = datetime.datetime(2024, 2, 16)
 
 html_header = """<!DOCTYPE html>
 <html>
@@ -290,7 +290,6 @@ html_end = "</body> </html>"
 newspaper = Newspaper()
 newspaper = acoup.getArticles(newspaper, start_date, end_date)
 #newspaper = insideofknoxville.getArticles(start_date, end_date)
-print("\nRESULTS:\n")
 html_art = []
 for article in newspaper.articles:
     # Access the attributes of each article
@@ -299,11 +298,11 @@ for article in newspaper.articles:
     article_author = article.author
     article_content = article.content
     html_art.append(f"""<div class="collumn">
-            <div class="head"><span class="headline hl3">{article_title}</span><p><span class="headline hl4">by {article_author}</span></p></div>
-            {article_content}</p></div>
-        """)
-    print(f"-\nTitle: {article_title}\n  Date: {article_date}\n    Author: {article_author}")
-print("-")
+        <div class="head"><span class="headline hl3">
+        {article_title}</span><p><span class="headline hl4">
+        by {article_author}</span></p></div>
+        {''.join(article_content)}
+    </div>""")
 
 html_art_string = ''.join(html_art)
 html_content = html_header + html_header2 + html_art_string + html_end
@@ -315,8 +314,6 @@ file_path = "output.html"
 with open("output.html", "w", encoding="utf-8") as file:
     # Write the HTML content to the file
     file.write(html_content)
-
-
 print("HTML file has been created successfully!")
 
 
