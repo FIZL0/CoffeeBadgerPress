@@ -289,7 +289,7 @@ html_end = "</body> </html>"
 
 newspaper = Newspaper()
 newspaper = acoup.getArticles(newspaper, start_date, end_date)
-#newspaper = insideofknoxville.getArticles(start_date, end_date)
+newspaper = insideofknoxville.getArticles(newspaper, start_date, end_date)
 html_art = []
 for article in newspaper.articles:
     # Access the attributes of each article

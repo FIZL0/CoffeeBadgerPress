@@ -2,8 +2,9 @@
 import requests
 import dateparser
 from bs4 import BeautifulSoup
+from newspaper import Article
 
-def getArticles(startDate, endDate):
+def getArticles(newspaper, startDate, endDate):
     startYear = startDate.year
     startMonth = startDate.month
     totalMonths = (endDate.year - startDate.year) * 12 + endDate.month - startDate.month + 1
@@ -25,6 +26,7 @@ def getArticles(startDate, endDate):
         soup = BeautifulSoup(page.content, "html.parser")
         results = soup.find_all("article")
 
+        """
         #checks for multiple days of articles. Using for testing
         # TO BE DELETED
         pageSelector = soup.find("div", class_="pagination tipi-col tipi-xs-12 font-2")
@@ -33,6 +35,7 @@ def getArticles(startDate, endDate):
             print("YES")
         else:
             print("NO")
+        """
 
         while True:
             #identifying whether there's a second page of articles
@@ -58,22 +61,22 @@ def getArticles(startDate, endDate):
                             if parsedDate > endDate or parsedDate < startDate:
                                 print("Article out of date range: ", parsedDate)
                                 continue
+                            print("Got Article: ", parsedDate)
                             content = nResults.find_all("p")
 
-                            print(title)
-                            print(author)
-                            print(parsedDate)
-                            #for paragraph in content:  
-                            #   print(paragraph.text)
-                            print("\n\n")
+                            paragraphs = []
+                            for paragraph in content:
+                                paragraphs.append(f"<p>{paragraph.text}</p>")
+
+                            newArticle = Article(parsedDate, title, nURL, author, paragraphs)
+                            newspaper.add_article(newArticle)
 
             if nextPage == None:    #if no next page, break the loop
                 break
             
             #incrementing the month in the URL and rerunning
             pageNumber = pageNumber + 1
-            URL = f"https://insideofknoxville.com/{startYear}/{startMonth + counter}/page/{pageNumber}/"
-            print(URL)      
+            URL = f"https://insideofknoxville.com/{startYear}/{startMonth + counter}/page/{pageNumber}/"     
             page = requests.get(URL)
             soup = BeautifulSoup(page.content, "html.parser")
             results = soup.find_all("article")    
@@ -81,3 +84,4 @@ def getArticles(startDate, endDate):
         pageNumber = 1    
         count = count + 1
         counter = counter + 1
+    return newspaper
