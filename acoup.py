@@ -42,9 +42,27 @@ def getArticles(newspaper, start_date, end_date):
                     author = soup.find('a', rel='author').text.strip()
 
                     paragraphs = newArticle.find_all("p")
+                    images = newArticle.find_all("figure", class_="wp-block-image")
                     contents = []
-                    for paragraph in paragraphs:
+                    # Iterate over paragraphs and images simultaneously
+                    for paragraph, image in zip(paragraphs, images):
+                        # Append paragraph text wrapped in <p> tags
                         contents.append(f'<p>{paragraph.text}</p>')
+
+                        # Append image HTML
+                        contents.append(str(image))
+
+                    # If there are remaining paragraphs without images
+                    if len(paragraphs) > len(images):
+                        for paragraph in paragraphs[len(images):]:
+                            contents.append(f'<p>{paragraph.text}</p>')
+
+                    # If there are remaining images without paragraphs
+                    elif len(images) > len(paragraphs):
+                        for image in images[len(paragraphs):]:
+                            contents.append(str(image))
+                                        #for paragraph in paragraphs:
+                    #    contents.append(f'<p>{paragraph.text}</p>')
                         
                 new_article = Article(parsed_date, title.text.strip(), newURL, author, contents)
                 newspaper.add_article(new_article)

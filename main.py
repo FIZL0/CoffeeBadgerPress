@@ -4,8 +4,8 @@ import datetime
 
 from newspaper import Newspaper
 
-start_date = datetime.datetime(2024, 2, 1)
-end_date = datetime.datetime(2024, 2, 16)
+start_date = datetime.datetime(2024, 2, 16)
+end_date = datetime.datetime(2024, 2, 28)
 
 html_header = """<!DOCTYPE html>
 <html>
@@ -14,6 +14,13 @@ html_header = """<!DOCTYPE html>
     <title>CoffeeBadgerPress</title>
     <meta name="viewport" content="width=device-width">
     <style>
+        img[class^="wp-image-"] {
+            height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
         body {
             font-family: 'Droid Serif', serif;
             font-size: 14px;
@@ -289,7 +296,7 @@ html_end = "</body> </html>"
 
 newspaper = Newspaper()
 newspaper = acoup.getArticles(newspaper, start_date, end_date)
-newspaper = insideofknoxville.getArticles(newspaper, start_date, end_date)
+#newspaper = insideofknoxville.getArticles(newspaper, start_date, end_date)
 html_art = []
 for article in newspaper.articles:
     # Access the attributes of each article
