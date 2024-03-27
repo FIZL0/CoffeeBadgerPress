@@ -35,7 +35,6 @@ def getArticles(newspaper, start_date, end_date):
                             continue # Skip the article
                         print("Got Article, Date:", parsed_date) # need to change prints to put in a csv
                     newURL = link.get("href")
-                    #print("Link:", newURL)
                     newPage = requests.get(newURL)
                     newSoup = BeautifulSoup(newPage.content, 'html.parser')
                     newArticle = newSoup.find("div", class_="entry-content")
@@ -48,7 +47,6 @@ def getArticles(newspaper, start_date, end_date):
                     for paragraph, image in zip(paragraphs, images):
                         # Append paragraph text wrapped in <p> tags
                         contents.append(f'<p>{paragraph.text}</p>')
-
                         # Append image HTML
                         contents.append(str(image))
 
@@ -61,8 +59,6 @@ def getArticles(newspaper, start_date, end_date):
                     elif len(images) > len(paragraphs):
                         for image in images[len(paragraphs):]:
                             contents.append(str(image))
-                                        #for paragraph in paragraphs:
-                    #    contents.append(f'<p>{paragraph.text}</p>')
                         
                 new_article = Article(parsed_date, title.text.strip(), newURL, author, contents)
                 newspaper.add_article(new_article)
