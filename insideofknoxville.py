@@ -63,12 +63,47 @@ def getArticles(newspaper, startDate, endDate):
                                 continue
                             print("Got Article: ", parsedDate)
                             content = nResults.find_all("p")
+                            images = nResults.find_all("figure", class_="wp-caption")
 
-                            paragraphs = []
-                            for paragraph in content:
-                                paragraphs.append(f"<p>{paragraph.text}</p>")
+                            articleData = [
+                                
+                            ]
 
-                            newArticle = Article(parsedDate, title, nURL, author, paragraphs)
+
+
+                            ###########
+                            # Iterate over paragraphs and images simultaneously
+                            for paragraph, image in zip(content, images):
+                                # Append paragraph text wrapped in <p> tags
+                                articleData.append(f'<p>{paragraph.text}</p>')
+
+                                # Append image HTML
+                                articleData.append(str(image))
+
+                            # If there are remaining paragraphs without images
+                            if len(content) > len(images):
+                                for paragraph in content[len(images):]:
+                                    articleData.append(f'<p>{paragraph.text}</p>')
+
+                            # If there are remaining images without paragraphs
+                            elif len(images) > len(content):
+                                for image in images[len(content):]:
+                                    articleData.append(str(image))
+                            ###########
+                                    
+
+
+
+
+
+
+
+
+                            
+                            #for paragraph in content:
+                                #articleData.append(f"<p>{paragraph.text}</p>")
+
+                            newArticle = Article(parsedDate, title, nURL, author, articleData)
                             newspaper.add_article(newArticle)
 
             if nextPage == None:    #if no next page, break the loop

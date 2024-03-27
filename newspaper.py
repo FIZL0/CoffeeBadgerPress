@@ -13,13 +13,5 @@ class Newspaper:
     def add_article(self, article):
         self.articles.append(article)
 
-    def display_articles(self):
-        for idx, article in enumerate(self.articles, start=1):
-            print(f"Article {idx}:")
-            print(f"Date: {article.date}")
-            print(f"Title: {article.title}")
-            print(f"Link: {article.link}")
-            print(f"Author: {article.author}")
-            print(f"Content: {article.content}")
-            print()
+    
     
