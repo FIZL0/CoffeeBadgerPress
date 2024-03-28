@@ -24,113 +24,101 @@ html_header = """<!DOCTYPE html>
         figure[class^="wp-caption"] {
             max-width: fit-content;
         }
-        body {
-            font-family: 'Droid Serif', serif;
-            font-size: 14px;
-            color: #2f2f2f;
-            background-color: #f9f7f1;
-        }
+       @font-face {
+    font-family: built;
+    src: url(built\ titling\ sb.woff);
+}
+body{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 14px;
+    color: #2f2f2f;
+    background-color: rgb(252, 247, 225);
+}
+header{
+    font-family: built;
+    font-weight: 900;
+    font-size: 80px;
+    text-transform: uppercase;
+    display: inline-block;
+    line-height: 72px;
+    
+    letter-spacing: 8px;
+    color:#5b5050;
+}
 
-        header {
-            font-family: 'Playfair Display', serif;
-            font-weight: 900;
-            font-size: 80px;
-            text-transform: uppercase;
-            display: inline-block;
-            line-height: 72px;
-            margin-bottom: 20px;
-        }
+p{
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.head{
+    text-align: center;
+    position: relative;
+}
 
-        p {
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
+.title{
+    text-align:center;
+}
 
-        .head {
-            text-align: center;
-            position: relative;
-        }
+.subhead{
+    text-transform: uppercase;
+    border-bottom: 2px solid #2f2f2f;
+    border-top: 2px solid #2f2f2f;
+    padding: 12px 0 12px 0;
 
-        .subhead {
-            text-transform: uppercase;
-            border-bottom: 2px solid #2f2f2f;
-            border-top: 2px solid #2f2f2f;
-            padding: 12px 0 12px 0;
-        }
+}
 
-        .weatherforcastbox {
-            position: relative;
-            width: 12%;
-            left: 10px;
-            border: 3px double #2f2f2f;
-            padding: 10px 15px 10px 15px;
-            line-height: 20px;
-            display: inline-block;
-            margin: 0 50px 20px -360px;
-        }
 
-        .content {
-            font-size: 0;
-            line-height: 0;
-            word-spacing: -.31em;
-            display: inline-block;
-            margin: 30px 2% 0 2%;
-        }
+.content{
+    font-size: 0;
+    line-height: 0;
+    word-spacing: -.31em;
+    display: inline-block;
+    margin: 30px 2% 0 2%;
+}
+.columns{
+    text-align: left;
+}
 
-        .collumns {}
+.column{
+    font-size: 14px;
+    line-height: 20px;
+    display: inline-block;
+    padding: 0 1% 0 1%;
+    vertical-align: top;
+    margin-bottom: 50px;
+    transition: all .7s;
+    column-count: 3;
+    column-rule-style:groove;
+    height: auto;
+}
 
-        .collumn {
-            font-size: 14px;
-            line-height: 20px;
-            width: 31.2%;
-            display: inline-block;
-            padding: 0 1% 0 1%;
-            vertical-align: top;
-            margin-bottom: 50px;
-            transition: all .7s;
-        }
+.column + .column { 
+  border-left: 1px solid #2f2f2f;
+}
+.column .headline{
+    text-align: center;
+    line-height: normal;
+    font-family: 'Playfair Display', serif;
+    display: block;
+    margin: 0 auto;
+}
+.column .headline.hl1{
+    font-weight: 700;
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 10px 0 10px 0;
+}
 
-        .collumn+.collumn {
-            border-left: 1px solid #2f2f2f;
-        }
-
-        .collumn .headline {
-            text-align: center;
-            line-height: normal;
-            font-family: 'Playfair Display', serif;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .collumn .headline.hl1 {
-            font-weight: 700;
-            font-size: 30px;
-            text-transform: uppercase;
-            padding: 10px 0 10px 0;
-        }
-
-        .collumn .headline.hl2 {
-            font-weight: 400;
-            font-style: italic;
-            font-size: 24px;
-            box-sizing: border-box;
-            padding: 10px 0 10px 0;
-        }
-        
-.collumn .headline.hl3{
+.column .headline.hl2{
     font-weight: 400;
     font-style: italic;
-    font-size: 36px;
+    font-size: 24px;
     box-sizing: border-box;
     padding: 10px 0 10px 0;
 }
-.collumn .headline.hl4{
-    font-weight: 700;
-    font-size: 12px;
-    box-sizing: border-box;
-    padding: 10px 0 10px 0;
-}
-.collumn .headline.hl4:before{
+
+.column .headline.hl2:before{
     border-top: 1px solid #2f2f2f;
     content: '';
     width: 100px;
@@ -138,17 +126,47 @@ html_header = """<!DOCTYPE html>
     display: block;
     margin: 0 auto;
 }
-.collumn .headline.hl4:after{
+
+.collumn .headline.hl2:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 13px;
+    display: block;
+    margin: 0 auto;
+}
+
+.column .headline.hl3{
+    font-weight: 400;
+    font-style: italic;
+    font-size: 36px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.column .headline.hl4{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.column .headline.hl4:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 7px;
+    display: block;
+    margin: 0 auto;
+}
+.column .headline.hl4:after{
     border-bottom: 1px solid #2f2f2f;
     content: '';
     width: 100px;
     height: 10px;
     display: block;
     margin: 0 auto;
-
 }
 
-.collumn .headline.hl5{
+.column .headline.hl5{
     font-weight: 400;
     font-size: 42px;
     text-transform: uppercase;
@@ -156,13 +174,13 @@ html_header = """<!DOCTYPE html>
     box-sizing: border-box;
     padding: 10px 0 10px 0;
 }
-.collumn .headline.hl6{
+.column .headline.hl6{
     font-weight: 400;
     font-size: 18px;
     box-sizing: border-box;
     padding: 10px 0 10px 0;
 }
-.collumn .headline.hl6:before{
+.column .headline.hl6:before{
     border-top: 1px solid #2f2f2f;
     content: '';
     width: 100px;
@@ -170,7 +188,7 @@ html_header = """<!DOCTYPE html>
     display: block;
     margin: 0 auto;
 }
-.collumn .headline.hl6:after{
+.column .headline.hl6:after{
     border-bottom: 1px solid #2f2f2f;
     content: '';
     width: 100px;
@@ -179,36 +197,35 @@ html_header = """<!DOCTYPE html>
     margin: 0 auto;
 
 }
-.collumn .headline.hl7{
+.column .headline.hl7{
     font-weight: 700;
     font-size: 12px;
     box-sizing: border-box;
     display: block;
     padding: 10px 0 10px 0;
 }
-.collumn .headline.hl8{
+.column .headline.hl8{
     font-weight: 700;
     font-size: 12px;
     box-sizing: border-box;
     padding: 10px 0 10px 0;
 }
-.collumn .headline.hl9{
+.column .headline.hl9{
     font-weight: 700;
     font-size: 12px;
     box-sizing: border-box;
     padding: 10px 0 10px 0;
 }
-.collumn .headline.hl10{
+.column .headline.hl10{
     font-weight: 700;
     font-size: 12px;
     box-sizing: border-box;
     padding: 10px 0 10px 0;
 }
-.collumn .citation{
+.column .citation{
     font-family: 'Playfair Display', serif;
     font-size: 36px;
     line-height: 44px;
-    /*font-style: italic;*/
     text-align: center;
     font-weight: 400;
     display: block;
@@ -216,7 +233,7 @@ html_header = """<!DOCTYPE html>
     font-feature-settings: "liga", "dlig";
 
 }
-.collumn .citation:before{
+.column .citation:before{
     border-top: 1px solid #2f2f2f;
     content: '';
     width: 100px;
@@ -224,7 +241,7 @@ html_header = """<!DOCTYPE html>
     display: block;
     margin: 0 auto;
 }
-.collumn .citation:after{
+.column .citation:after{
     border-bottom: 1px solid #2f2f2f;
     content: '';
     width: 100px;
@@ -232,54 +249,12 @@ html_header = """<!DOCTYPE html>
     display: block;
     margin: 0 auto;
 }
-.collumn .figure {
+.column .figure {
 	  margin: 0 0 20px;
 }
-.collumn .figcaption{
+.column .figcaption{
 	font-style: italic;
 	font-size: 12px;
-}
-.media {
-    -webkit-filter: sepia(80%) contrast(1) opacity(0.8);
-    filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
-    mix-blend-mode: multiply;
-    width: 100%;
-}
-/*________________________________________________________________________________________________________________________________*/
-/*MEDIAQUERIES*/
-@media only all and (max-width: 1300px) {
-    .weatherforcastbox{
-        display: none;
-    }
-
-}
-@media only all and (max-width: 1200px) {
-    .collumn{
-        width: 31%;
-    }
-
-}
-    @media only all and (max-width: 900px) {
-    .collumn{
-        width: 47%;
-    }
-
-}
-@media only all and (max-width: 600px) {
-    .collumn{
-        width: 100%;
-    }
-	.collumn + .collumn {
-				border-left: none;
-      	border-bottom: 1px solid #2f2f2f;
-	}
-    header{
-        max-width: 320px;
-        font-size: 60px;
-        line-height: 54px;
-        overflow: hidden;
-    }
-
 }
 </style>
 </head>
