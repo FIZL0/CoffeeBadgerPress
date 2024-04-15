@@ -282,7 +282,7 @@ for article in newspaper.articles:
     article_title = article.title
     article_author = article.author
     article_content = article.content
-    html_art.append(f"""<div class="collumn">
+    html_art.append(f"""<div class="column">
         <div class="head"><span class="headline hl3">
         {article_title}</span><p><span class="headline hl4">
         by {article_author}</span></p></div>
