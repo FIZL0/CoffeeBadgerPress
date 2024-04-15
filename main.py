@@ -75,6 +75,7 @@ p{
     word-spacing: -.31em;
     display: inline-block;
     margin: 30px 2% 0 2%;
+    width: 96%;
 }
 .columns{
     text-align: left;
@@ -84,17 +85,17 @@ p{
     font-size: 14px;
     line-height: 20px;
     display: inline-block;
-    padding: 0 1% 0 1%;
     vertical-align: top;
     margin-bottom: 50px;
     transition: all .7s;
     column-count: 3;
     column-rule-style:groove;
     height: auto;
+    width: 100%;
 }
 
 .column + .column { 
-  border-left: 1px solid #2f2f2f;
+  border-left: 0px solid #2f2f2f;
 }
 .column .headline{
     text-align: center;
@@ -256,6 +257,14 @@ p{
 	font-style: italic;
 	font-size: 12px;
 }
+
+@media print {
+    .column { 
+        display: block; 
+        page-break-before: auto; 
+    }
+}
+
 </style>
 </head>
 """
