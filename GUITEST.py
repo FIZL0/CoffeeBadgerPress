@@ -34,13 +34,12 @@ button1 = tk.Button(root, text="Go", command=show_msg, font=('Arial', 18))
 button1.pack(padx=300, pady=30)
 button1.place(x=310, y=90)
 
-button2 = tk.Button(root, text="Go", font=('Arial', 18))
-button2.pack(padx=300, pady=30)
-button2.place(x=310, y=160)
-
 def get_dates():
     firstDate = cal.get_date
     secondDate = cal2.get_date
-    
+
+button2 = tk.Button(root, text="Go", command=get_dates(), font=('Arial', 18))
+button2.pack(padx=300, pady=30)
+button2.place(x=310, y=160)
 
 root.mainloop()
