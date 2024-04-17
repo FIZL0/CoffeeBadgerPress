@@ -1,6 +1,11 @@
+import os
+import sys
 import tkinter as tk
 from tkcalendar import Calendar, DateEntry
 from tkinter import messagebox
+import datetime
+#from main import runMain
+import main
 
 root = tk.Tk()
 
@@ -34,9 +39,13 @@ button1 = tk.Button(root, text="Go", command=show_msg, font=('Arial', 18))
 button1.pack(padx=300, pady=30)
 button1.place(x=310, y=90)
 
+firstDate: datetime.date
+secondDate: datetime.date
+
 def get_dates():
     firstDate = cal.get_date
     secondDate = cal2.get_date
+    main.runMain()
 
 button2 = tk.Button(root, text="Go", command=get_dates(), font=('Arial', 18))
 button2.pack(padx=300, pady=30)
