@@ -24,14 +24,15 @@ def getArticles(newspaper, startDate, endDate):
        
         page = requests.get(URL)
         soup = BeautifulSoup(page.content, "html.parser")
-        results = soup.find_all("article")
+        results = soup.find("div", id="main")
+        articles = results.find_all("article")
 
         while True:
             #identifying whether there's a second page of articles
             pageSelector = soup.find("div", class_="pagination tipi-col tipi-xs-12 font-2")
             nextPage = pageSelector.find("a", class_="next page-numbers")
 
-            for article in results:
+            for article in articles:
                 nURL = article.find("a").get("href")
                 nPage = requests.get(nURL)
                 nSoup = BeautifulSoup(nPage.content, "html.parser")
@@ -52,7 +53,8 @@ def getArticles(newspaper, startDate, endDate):
                                 continue
                             print("Got Article: ", parsedDate)
 
-                            content =  nResults.find_all(["p", "figure"])
+                            articleBody = nResults.find("div", class_="entry-content-wrap")
+                            content =  articleBody.find_all(["p", "figure"])
                             articleData = []
 
                             for item in content:
@@ -74,7 +76,8 @@ def getArticles(newspaper, startDate, endDate):
             URL = f"https://insideofknoxville.com/{startYear}/{startMonth + counter}/page/{pageNumber}/"     
             page = requests.get(URL)
             soup = BeautifulSoup(page.content, "html.parser")
-            results = soup.find_all("article")    
+            results = soup.find("div", id="main")
+            articles = results.find_all("article")    
             
         pageNumber = 1    
         count = count + 1
