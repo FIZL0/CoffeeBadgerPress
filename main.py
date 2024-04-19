@@ -286,7 +286,7 @@ def runMain(firstDate, secondDate):
     html_end = "</body> </html>"
 
     newspaper = Newspaper()
-    #newspaper = acoup.getArticles(newspaper, start_date, end_date)
+    newspaper = acoup.getArticles(newspaper, start_date, end_date)
     newspaper = insideofknoxville.getArticles(newspaper, start_date, end_date)
     html_art = []
     for article in newspaper.articles:

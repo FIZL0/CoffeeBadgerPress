@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from newspaper import Article
 
 def getArticles(newspaper, start_date, end_date):
-    minimum_date = datetime.datetime(2019, 5 ,3)
+    minimum_date = datetime.datetime(2019, 5 ,3).date()
     if(start_date < minimum_date):
         start_date = minimum_date
     current_date = start_date
@@ -29,7 +29,7 @@ def getArticles(newspaper, start_date, end_date):
 
                     if time_tag:
                         # Print the content of the time tag
-                        parsed_date = dateparser.parse(time_tag.text.strip())
+                        parsed_date = dateparser.parse(time_tag.text.strip()).date()
                         if parsed_date < start_date or parsed_date > end_date: # Check if the article is out of range
                             print("Article is not in date range given:", parsed_date) # temp
                             continue # Skip the article
