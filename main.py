@@ -3,9 +3,10 @@ import insideofknoxville
 import datetime
 from newspaper import Newspaper
 
-def runMain(firstDate, secondDate):
+def runMain(firstDate, secondDate, sinceLastButton):
     start_date: datetime.date = firstDate
     end_date: datetime.date = secondDate
+    since_last_button: bool = sinceLastButton
 
     html_header = """<!DOCTYPE html>
     <html>
@@ -279,10 +280,6 @@ def runMain(firstDate, secondDate):
     <div class="content">
     """
 
-    '''
-    <div class="subhead">Knoxville, TN: {start_date.strftime("%m/%d/%Y")} - {end_date.strftime("%m/%d/%Y")}</div>
-    '''
-
     html_end = "</body> </html>"
 
     newspaper = Newspaper()
@@ -314,5 +311,8 @@ def runMain(firstDate, secondDate):
         file.write(html_content)
     print("HTML file has been created successfully!")
 
-
-
+    if (since_last_button):
+        lastRunPath = "lastRunDate.py"
+        lastRunDate = f"lastRunDate = \"{end_date}\""
+        with open(lastRunPath, "w", encoding="utf-8") as file:
+            file.write(lastRunDate)
