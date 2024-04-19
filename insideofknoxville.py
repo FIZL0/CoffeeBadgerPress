@@ -7,7 +7,9 @@ from newspaper import Article
 def getArticles(newspaper, startDate, endDate):
     startYear = startDate.year
     startMonth = startDate.month
+
     totalMonths = (endDate.year - startDate.year) * 12 + endDate.month - startDate.month + 1
+
     count = 0       #used to increment total months
     counter = 0     #used to increment month called in url
     pageNumber = 1
@@ -47,7 +49,7 @@ def getArticles(newspaper, startDate, endDate):
                         date = nResults.find("span", class_="date")            
                         if date:
                             date = date.text.strip()
-                            parsedDate = dateparser.parse(date, settings={'DATE_ORDER': 'YMD'})
+                            parsedDate = dateparser.parse(date, settings={'DATE_ORDER': 'YMD'}).date()
                             if parsedDate > endDate or parsedDate < startDate:
                                 print("Article out of date range: ", parsedDate)
                                 continue

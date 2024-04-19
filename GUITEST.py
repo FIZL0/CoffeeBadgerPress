@@ -4,7 +4,6 @@ import tkinter as tk
 from tkcalendar import Calendar, DateEntry
 from tkinter import messagebox
 import datetime
-#from main import runMain
 import main
 
 root = tk.Tk()
@@ -33,21 +32,22 @@ cal2.pack(pady=20)
 cal2.place(x=30,y=185)
 
 def show_msg():
-    messagebox.showinfo("Test Message!")
+    messagebox.showinfo("Hold On a Minute", "Let me build your newpaper, this may take a sec...")
+
+def get_dates():
+    firstDate = cal2.get_date() #returns a datetime.date
+    secondDate = cal.get_date()
+
+    #messagebox.showinfo("Hold On a Minute", "Let me build your newpaper, this may take a sec...")
+    main.runMain(firstDate, secondDate)
+    #print(firstDate)
+    #print(secondDate)
 
 button1 = tk.Button(root, text="Go", command=show_msg, font=('Arial', 18))
 button1.pack(padx=300, pady=30)
 button1.place(x=310, y=90)
 
-firstDate: datetime.date
-secondDate: datetime.date
-
-def get_dates():
-    firstDate = cal.get_date
-    secondDate = cal2.get_date
-    main.runMain()
-
-button2 = tk.Button(root, text="Go", command=get_dates(), font=('Arial', 18))
+button2 = tk.Button(root, text="Go", command=get_dates, font=('Arial', 18))
 button2.pack(padx=300, pady=30)
 button2.place(x=310, y=160)
 

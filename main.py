@@ -3,10 +3,10 @@ import insideofknoxville
 import datetime
 from newspaper import Newspaper
 
-start_date = datetime.datetime(2024, 4, 15)
-end_date = datetime.datetime(2024, 4, 17)
+def runMain(firstDate, secondDate):
+    start_date: datetime.date = firstDate
+    end_date: datetime.date = secondDate
 
-def runMain():
     html_header = """<!DOCTYPE html>
     <html>
     <head>
@@ -274,13 +274,13 @@ def runMain():
         <div class="headerobjectswrapper">
             <header>Coffee Badger Press</header>
         </div>
-        <div class="subhead">Knoxville, TN: {start_date} - {end_date}</div>
+        <div class="subhead">Knoxville, TN: {start_date.strftime("%m/%d/%Y")} - {end_date.strftime("%m/%d/%Y")}</div>
     </div>
     <div class="content">
     """
 
     '''
-    <div class="subhead">Knoxville, TN: {start_date.strftime("%y/%m/%d")} - {end_date.strftime("%y/%m/%d")}</div>
+    <div class="subhead">Knoxville, TN: {start_date.strftime("%m/%d/%Y")} - {end_date.strftime("%m/%d/%Y")}</div>
     '''
 
     html_end = "</body> </html>"
