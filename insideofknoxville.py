@@ -56,13 +56,15 @@ def getArticles(newspaper, startDate, endDate):
                             print("Got Article: ", parsedDate)
 
                             articleBody = nResults.find("div", class_="entry-content-wrap")
-                            content =  articleBody.find_all(["p", "figure"])
+                            content =  articleBody.find_all(["p", "figure", "ul"])
                             articleData = []
 
                             for item in content:
                                 if str(item).startswith("<figure class=\"gallery-item\""):  #excluding gallery item images
                                     continue
                                 elif str(item).startswith("<figure"):   #appending images and captions
+                                    articleData.append(str(item))
+                                elif str(item).startswith("<ul>"):  #appending list items 
                                     articleData.append(str(item))
                                 else:
                                     articleData.append(f'<p>{item.text}</p>')   #appending paragraphs
