@@ -142,9 +142,14 @@ def runMain(firstDate, secondDate, sinceLastButton):
     }
 
     @media print {
+        .content {
+            display: block;
+            break-before: auto;
+        }
         .column { 
             display: block; 
-            page-break-before: auto; 
+            page-break-before: auto;
+            page-break-after: always;
         }
     }
 
