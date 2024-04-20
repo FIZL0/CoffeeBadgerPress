@@ -136,7 +136,7 @@ def runMain(firstDate, secondDate, sinceLastButton):
         margin: 0 0 20px;
     }
 
-    .wp-caption-text{
+    .wp-caption-text, .wp-element-caption {
         font-style: italic;
         font-size: 12px;
     }
