@@ -260,9 +260,14 @@ def runMain(firstDate, secondDate, sinceLastButton):
     }
 
     @media print {
+        .content {
+            display: block;
+            break-before: auto;
+        }
         .column { 
             display: block; 
-            page-break-before: auto; 
+            page-break-before: auto;
+            page-break-after: always;
         }
     }
 
@@ -280,7 +285,7 @@ def runMain(firstDate, secondDate, sinceLastButton):
     <div class="content">
     """
 
-    html_end = "</body> </html>"
+    html_end = "</div> </body> </html>"
 
     newspaper = Newspaper()
     newspaper = acoup.getArticles(newspaper, start_date, end_date)
