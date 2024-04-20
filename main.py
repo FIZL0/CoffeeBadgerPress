@@ -14,7 +14,7 @@ def runMain(firstDate, secondDate, sinceLastButton):
         <meta charset="UTF-8">
         <title>CoffeeBadgerPress</title>
         <meta name="viewport" content="width=device-width">
-        <style>
+                <style>
             img[class^="wp-image-"], [class^="size-large"] {
                 height: auto;
                 display: block;
@@ -69,7 +69,6 @@ def runMain(firstDate, secondDate, sinceLastButton):
 
     }
 
-
     .content{
         font-size: 0;
         line-height: 0;
@@ -78,10 +77,7 @@ def runMain(firstDate, secondDate, sinceLastButton):
         margin: 30px 2% 0 2%;
         width: 96%;
     }
-    .columns{
-        text-align: left;
-    }
-
+    
     .column{
         font-size: 14px;
         line-height: 20px;
@@ -105,38 +101,6 @@ def runMain(firstDate, secondDate, sinceLastButton):
         display: block;
         margin: 0 auto;
     }
-    .column .headline.hl1{
-        font-weight: 700;
-        font-size: 30px;
-        text-transform: uppercase;
-        padding: 10px 0 10px 0;
-    }
-
-    .column .headline.hl2{
-        font-weight: 400;
-        font-style: italic;
-        font-size: 24px;
-        box-sizing: border-box;
-        padding: 10px 0 10px 0;
-    }
-
-    .column .headline.hl2:before{
-        border-top: 1px solid #2f2f2f;
-        content: '';
-        width: 100px;
-        height: 7px;
-        display: block;
-        margin: 0 auto;
-    }
-
-    .collumn .headline.hl2:after{
-        border-bottom: 1px solid #2f2f2f;
-        content: '';
-        width: 100px;
-        height: 13px;
-        display: block;
-        margin: 0 auto;
-    }
 
     .column .headline.hl3{
         font-weight: 400;
@@ -152,7 +116,7 @@ def runMain(firstDate, secondDate, sinceLastButton):
         padding: 10px 0 10px 0;
     }
     .column .headline.hl4:before{
-        border-top: 1px solid #2f2f2f;
+        border-top: 5px solid #2f2f2f;
         content: '';
         width: 100px;
         height: 7px;
@@ -160,114 +124,27 @@ def runMain(firstDate, secondDate, sinceLastButton):
         margin: 0 auto;
     }
     .column .headline.hl4:after{
-        border-bottom: 1px solid #2f2f2f;
+        border-bottom: 5px solid #2f2f2f;
         content: '';
         width: 100px;
         height: 10px;
         display: block;
         margin: 0 auto;
     }
-
-    .column .headline.hl5{
-        font-weight: 400;
-        font-size: 42px;
-        text-transform: uppercase;
-        font-style: italic;
-        box-sizing: border-box;
-        padding: 10px 0 10px 0;
-    }
-    .column .headline.hl6{
-        font-weight: 400;
-        font-size: 18px;
-        box-sizing: border-box;
-        padding: 10px 0 10px 0;
-    }
-    .column .headline.hl6:before{
-        border-top: 1px solid #2f2f2f;
-        content: '';
-        width: 100px;
-        height: 7px;
-        display: block;
-        margin: 0 auto;
-    }
-    .column .headline.hl6:after{
-        border-bottom: 1px solid #2f2f2f;
-        content: '';
-        width: 100px;
-        height: 10px;
-        display: block;
-        margin: 0 auto;
-
-    }
-    .column .headline.hl7{
-        font-weight: 700;
-        font-size: 12px;
-        box-sizing: border-box;
-        display: block;
-        padding: 10px 0 10px 0;
-    }
-    .column .headline.hl8{
-        font-weight: 700;
-        font-size: 12px;
-        box-sizing: border-box;
-        padding: 10px 0 10px 0;
-    }
-    .column .headline.hl9{
-        font-weight: 700;
-        font-size: 12px;
-        box-sizing: border-box;
-        padding: 10px 0 10px 0;
-    }
-    .column .headline.hl10{
-        font-weight: 700;
-        font-size: 12px;
-        box-sizing: border-box;
-        padding: 10px 0 10px 0;
-    }
-    .column .citation{
-        font-family: 'Playfair Display', serif;
-        font-size: 36px;
-        line-height: 44px;
-        text-align: center;
-        font-weight: 400;
-        display: block;
-        margin: 40px 0 40px 0;
-        font-feature-settings: "liga", "dlig";
-
-    }
-    .column .citation:before{
-        border-top: 1px solid #2f2f2f;
-        content: '';
-        width: 100px;
-        height: 16px;
-        display: block;
-        margin: 0 auto;
-    }
-    .column .citation:after{
-        border-bottom: 1px solid #2f2f2f;
-        content: '';
-        width: 100px;
-        height: 16px;
-        display: block;
-        margin: 0 auto;
-    }
+   
     .column .figure {
         margin: 0 0 20px;
     }
-    .column .figcaption{
+
+    .wp-caption-text{
         font-style: italic;
         font-size: 12px;
     }
 
     @media print {
-        .content {
-            display: block;
-            break-before: auto;
-        }
         .column { 
             display: block; 
-            page-break-before: auto;
-            page-break-after: always;
+            page-break-before: auto; 
         }
     }
 
