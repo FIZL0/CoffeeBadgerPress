@@ -10,7 +10,7 @@ htmlHeader = """<!DOCTYPE html>
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
-                width: 100%;
+                max-width: 100%;
             }
             figure[class^="wp-caption"] {
                 max-width: fit-content;
