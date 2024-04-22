@@ -5,14 +5,14 @@ htmlHeader = """<!DOCTYPE html>
         <title>CoffeeBadgerPress</title>
         <meta name="viewport" content="width=device-width">
                 <style>
-            img[class^="wp-image-"], [class^="size-large"] {
+            img {
                 height: auto;
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
                 max-width: 100%;
             }
-            figure[class^="wp-caption"] {
+            figure {
                 max-width: fit-content;
             }
         @font-face {

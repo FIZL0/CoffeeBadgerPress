@@ -40,27 +40,16 @@ def getArticles(newspaper, start_date, end_date):
                     newArticle = newSoup.find("div", class_="entry-content")
                     author = soup.find('a', rel='author').text.strip()
 
-                    paragraphs = newArticle.find_all("p")
-                    images = newArticle.find_all("figure", class_="wp-block-image")
-                    contents = []
+                    content = newArticle.find_all(["p", "figure"])
+                    articleData = []
                     # Iterate over paragraphs and images simultaneously
-                    for paragraph, image in zip(paragraphs, images):
-                        # Append paragraph text wrapped in <p> tags
-                        contents.append(f'<p>{paragraph.text}</p>')
-                        # Append image HTML
-                        contents.append(str(image))
-
-                    # If there are remaining paragraphs without images
-                    if len(paragraphs) > len(images):
-                        for paragraph in paragraphs[len(images):]:
-                            contents.append(f'<p>{paragraph.text}</p>')
-
-                    # If there are remaining images without paragraphs
-                    elif len(images) > len(paragraphs):
-                        for image in images[len(paragraphs):]:
-                            contents.append(str(image))
-                        
-                new_article = Article(parsed_date, title.text.strip(), newURL, author, contents)
+                    for item in content:
+                        if str(item).startswith("<figure"):   #appending images and captions
+                            articleData.append(str(item))
+                        else:
+                            articleData.append(f'<p>{item.text}</p>')   #appending paragraphs
+                            
+                new_article = Article(parsed_date, title.text.strip(), newURL, author, articleData)
                 newspaper.add_article(new_article)
         if(end_date > current_date):
             current_date += relativedelta(months=1)
