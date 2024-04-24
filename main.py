@@ -7,10 +7,10 @@ import htmlHeader
 def runMain(firstDate, secondDate, sinceLastButton):
     start_date: datetime.date = firstDate
     end_date: datetime.date = secondDate
-    since_last_button: bool = sinceLastButton
+    since_last_button: bool = sinceLastButton   #if button pressed, will be true
 
-    html_header = htmlHeader.htmlHeader
-    html_header2 = f"""
+    html_header = htmlHeader.htmlHeader     #html header and styling
+    html_header2 = f"""     
     <body>
     <div class="head">
         <div class="headerobjectswrapper">
@@ -23,10 +23,11 @@ def runMain(firstDate, secondDate, sinceLastButton):
 
     html_end = "</div> </body> </html>"
 
+    #building the newspaper and populating with articles using the web scrapers
     newspaper = Newspaper()
     newspaper = acoup.getArticles(newspaper, start_date, end_date)
     newspaper = insideofknoxville.getArticles(newspaper, start_date, end_date)
-    html_art = []
+    html_art = []   #articles
     for article in newspaper.articles:
         # Access the attributes of each article
         article_date = article.date
@@ -52,6 +53,7 @@ def runMain(firstDate, secondDate, sinceLastButton):
         file.write(html_content)
     print("HTML file has been created successfully!")
 
+    #will update variable in lastRunDate.py if first button is pressed, updateing to current date
     if (since_last_button):
         lastRunPath = "lastRunDate.py"
         lastRunDate = f"lastRunDate = \"{end_date}\""
