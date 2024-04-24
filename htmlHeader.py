@@ -1,3 +1,6 @@
+# this is a text object imported by the web scraper that formats the final output using HTML and CSS to imitate a newspaper look
+# html will be output onto a letter format pages divided into three columns underneath an overall newsheader
+# media formatting has been added specifically for printing that creates page breaks underneath article for a more readable physical view
 htmlHeader = """<!DOCTYPE html>
     <html>
     <head>
