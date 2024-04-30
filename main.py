@@ -53,9 +53,9 @@ def runMain(firstDate, secondDate, sinceLastButton):
         file.write(html_content)
     print("HTML file has been created successfully!")
 
-    #will update variable in lastRunDate.py if first button is pressed, updateing to current date
+    #will update variable in lastRun.py if first button is pressed, updateing to current date
     if (since_last_button):
-        lastRunPath = "lastRunDate.py"
-        lastRunDate = f"lastRunDate = \"{end_date}\""
+        lastRunPath = "app&output/lastRun.py"
+        lastRunDate = f"\"{end_date}\""
         with open(lastRunPath, "w", encoding="utf-8") as file:
             file.write(lastRunDate)

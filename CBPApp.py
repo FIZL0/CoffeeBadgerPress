@@ -2,16 +2,24 @@ import os
 import sys
 import tkinter as tk
 from tkcalendar import Calendar, DateEntry
-from tkinter import *
+from tkinter import messagebox
 from PIL import ImageTk, Image
 import datetime
 import main
-import lastRunDate
 import dateparser
 
 def restart_program():
     python = sys.executable
     os.execl(python, python, * sys.argv)
+
+#lastRunDate file path
+lastRunPath = "app&output/lastRun.py"
+if os.path.exists(lastRunPath):     #checks for file path and creates if it doesn't exist.
+    print("file exists")
+else:
+    print("creating lastRun.py file")
+    with open(lastRunPath, "w", encoding="utf-8") as file:
+            file.write("\"2024-04-30\"")
 
 root = tk.Tk()
 
@@ -35,8 +43,13 @@ label1.place(x=170,y=50)
 label2 = tk.Label(root, text="Print All Articles Since Last Print", font=('Arial', 14))
 label2.place(x=20,y=140)
 
+#reading lastRunDate from file
+lastRunDate = ""
+with open(lastRunPath, 'r') as file:
+    lastRunDate = file.read()
+
 #last print label
-last_run_date = (dateparser.parse(lastRunDate.lastRunDate, settings={'DATE_ORDER': 'YMD'})).strftime("%m/%d/%Y")
+last_run_date = (dateparser.parse(lastRunDate, settings={'DATE_ORDER': 'YMD'})).strftime("%m/%d/%Y")
 label5 = tk.Label(root, text=f"Last print date: {last_run_date}", font=('Arial', 10))
 label5.place(x=20,y=165)
 
@@ -64,9 +77,20 @@ def change_btn_txt(int: int):
     else:
         btn2_txt.set("Wait...")
 
+#date check function
+def check_date(firstDate, secondDate):
+    if firstDate > secondDate:
+        messagebox.showerror("ERROR", "First date cannot be later than the second date!")
+        restart_program()
+    elif firstDate > datetime.date.today() or secondDate > datetime.date.today():
+        messagebox.showerror("ERROR", "Dates must be set no later than today's date!")
+        restart_program()
+    else:
+        print("Dates within range")
+
 #first button function
 def run_last_date():
-    firstDate = dateparser.parse(lastRunDate.lastRunDate, settings={'DATE_ORDER': 'YMD'}).date()
+    firstDate = dateparser.parse(lastRunDate, settings={'DATE_ORDER': 'YMD'}).date()
     secondDate = datetime.date.today()
     change_btn_txt(1)
     root.update_idletasks()
@@ -77,6 +101,7 @@ def run_last_date():
 def run_date_range():
     firstDate = cal2.get_date() #returns a datetime.date
     secondDate = cal.get_date()
+    check_date(firstDate=firstDate, secondDate=secondDate)
     change_btn_txt(2)
     root.update_idletasks()
     main.runMain(firstDate, secondDate, sinceLastButton=False)
